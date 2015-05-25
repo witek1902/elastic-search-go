@@ -1,0 +1,108 @@
+Ten Go to nastêpca C - zosta³ zainspirowany C, C++, Java,Pythonem, Ruby, Erlangiem.... 
+Posiada wszystkie cech nowoczesnych jêzyków min. programowanie równoleg³e, Unicode etc... co mnie osobiœcie siê bardzo podoba.
+-Kompilator Go tworzy natywny kod wykonywalny ale nie jest to standardowy "exec" tak jak w C/C++. Kod GO uruchamiany jest przez œrodowisko wykonywalne
+"Runtime" które jest czymœ podobnym do JVM albo .NET i odpowiada za Garbage Collector, Stos, Kana³y, Gorutines...etc. Z tym ¿e kod "Runtime" do³¹czany jest do
+ka¿dego "exca" co zwiêksza jego rozmiar ale dziêki temu mamy wszystko w jednym pliku - a nie tak jak w Javie albo Pythonie(nie ma zale¿noœci zwi¹zanych z wersj¹ "runtime").
+-Dwa kompilatory: "go" i "gccgo-compiler"(daje szybszy kod ale wolniej siê kompilujê).
+-Pierwszy jêzyk programowania z pe³n¹ obs³ug¹ UTF-8. Nie tylko stringi mog¹ byæ w UTF-8 ale i kod Ÿród³owy(kody Ÿród³owe GO s¹ w UTF-8)
+-Nie ma klas i typowego dziedziczenia ale s¹ interfejsy dziêki którym mo¿emy emulowaæ OOP(coœ jak mixiny w Rubym):
+
+type Engine interface 
+{
+    Start()
+    Stop()
+}
+ 
+type Car struct 
+{
+    Engine
+}
+ 
+func (c *Car) GoToWorkIn
+{
+    c.Start();
+    c.Stop();
+}
+ 
+ 
+ - Zapotrzebowanie na pamiêæ ma porównywaln¹ do C++ ale o po³owê mniejsz¹ od Scali i 4x mniejsz¹ ni¿ Java.
+- Kompilacja Go jest 5-6x szybsza w porównaniu od kompilacji C++/Javy  i 10x szybsza w porównaniu do Scali.
+- Go jest œrednio 25x szybszy od Pythona 3.0
+- Kod Ÿród³owy GO musi byæ kodowany w UTF-8 bez "BOM" bo inaczej wyskoczy b³¹d,
+- GO wymusza taki styl kodowania:
+ 
+func main(){
+    fmt.Println("Hello")
+}
+
+
+Jeœli napiszemy to tak(to wyskoczy b³¹d):
+ 
+func main()
+{
+    fmt.Println("Hello")
+}
+
+W katalogu bin/ jest narzêdzie gofmt do formatowania kodu.
+
+To jest jêzyk typowany statycznie  z pewn¹ charakterystyk¹ 
+jêzyków typowanych dynamicznie( przez slowo var ). Jêzyk jest
+mocno typowany - niedozwolona jest niejawna konwersje typów.
+
+"Go is statically typed. Every variable has a static type, that is, exactly one type known and fixed at compile time: int, float32, *MyType, []byte, and so on. "
+
+Mo¿esz pisaæ tak:
+ 
+var a int = 15
+ 
+var i = 5
+ 
+var b bool = false
+ 
+var str string = “To jest tekst”
+
+Jak nie podasz typu to kompilator go sobie go przepiszê przez dedukcjê(inferencjê)
+
+A teraz inna ciekawostka - nie ma try i catch jest za to panic i recover
+func (d *decoder) Read(b []byte) (int, error) {
+    for {
+        if len(d.toRead) > 0 {
+            n := copy(b, d.toRead)
+            d.toRead = d.toRead[n:]
+            return n, nil
+        }
+        if d.err != nil {
+            return 0, d.err
+        }
+        d.decode()
+    }
+    **panic**("unreachable")
+}
+
+Jêzyk umo¿liwia u¿ycie funkcji anonimowych(lambda):
+ 
+func(a, b int, z float64) bool { return a*b < int(z) }
+
+
+A co za tym idzie coœ takiego jest dopuszczalne:
+
+ 
+package main
+import “fmt”
+ 
+func main() {
+    var f = Adder()
+    fmt.Print(f(1),"-" )
+    fmt.Print(f(20),"-")
+    fmt.Print(f(300))
+}
+ 
+func Adder() func(int) int {
+    var x int
+    return func(delta int) int {
+        x += delta
+        return x
+    }
+}
+
+

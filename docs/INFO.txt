@@ -1,0 +1,54 @@
+Cel przedmiotu:
+Przydatna jest podstawowa wiedza z dziedziny baz danych. Ale bêde j¹ wprowadza³ podczas wyk³adu. 
+W ramach przedmiotu poka¿ê "najlepsze praktyki" przy projektowaniu baz danych oraz róznych
+ podsystemów wspó³pracuj¹cych z nimi. Bêd¹ to Report Services, MS Business Inteligent Studio i inne. 
+ Bêdziemy tworzyæ podsystemy do wymiany danych pomiedzy róznymi systemami, aplikacjami.
+ 
+Treœci merytoryczne:
+Wyk³ad
+1. Rodzaje autoryzacji w aplikacjach baz danych
+2. Sposoby autentykacji (wady i zalety)
+3. Definiowanie ról i grup dostêpu
+4. Tworzenie czasowych zadan (SQL Server Agent)
+5. Tworzenie pakietów do przesy³ania i przetwarzania danych (pakiety SSIS). Projekt
+1. Zaprojektowac bazê danych
+2. Zaprojektowac i wykonaæ procesy czasowe w bazie danych
+3. Wykonanie pakietów do przesy³ania danych z i do bazy
+4. Wykonanie raportów w oparciu o Report Services
+Literatura przedmiotu:
+Udostêpniam studentom mój skrypt w postaci prezentacji i cwieczen w SQL-u. 
+Dostarczam program zakladajacy baze danych (testow¹) i przyk³ady, 
+które na³e¿y wykonaæ i opis jak nale¿y je wykonaæ. 2. 
+Ka¿da ksi¹zka o standardzie SQL-a, np MS SQL Server 2000 dla ka¿dego Richard Waymire,RickSawtell, wydawnictwo Helion
+Metody oceny:
+wykonanie prostego pakietu do importu danych na podstawie dostarczonego przez wyk³adowcê wzorca. 
+Drugi projekt wed³ug w³asnego wyboru studenta po uprzednim zatwierdzeniu przez prowadz¹cego
+
+Witam,
+
+Bardzo póŸno zaczynamy i macie Pañstwo coraz wiêcej zaliczeñ maj/czerwiec
+
+Dlatego gor¹ca proœba:
+
+1. Poczytaæ za³¹czone 2 PDF-y
+2. Pobawiæ siê skryptem SIS
+3. Napisaæ maluteñki projekcik
+
+- transferujacey zbiór danych do naszej bazy
+- moze byæ plik, tekstowy, mo¿e byæ XML
+- aby zbiór trzeba by³o roz³o¿yc na kilka tabel
+- Na przyk³ad dane o firmie rozk³adamy na
+województwa (jak takiego nie by³o), miasta (jak takiego nie bylo) dane firmy (jak takiej nie by³o)
+Na 5.0 prosze zrobiæ jako pakiet SSIS i czêœæ programu ASP.NET, na 4.0 wystarczy SSIS
+
+Wyznaczam termin do 7 czerwca do pó³nocy. 8 czewca wpisy od 10.30 w sali 510 GE
+Tydzieñ spóŸnienia nie obni¿a oceny ale apeluje o wczeœniejsze oddanie
+Drugi termin oddania i wpisów to 14 czerwca do 23.59 i wpisy 15 czerwca o 10.30 sala 510 GE
+
+W razie jak coœ bêdzie niezrozumia³e to proszê zebraæ grupê chêtnych i zrobiy wyjaœniaj¹ce zaj¹ecia
+
+Smia³o prosze pisac na maciej.stodolski@gmail.com (politechniczny adres czesto nie dziala)
+
+Pozdrawiam
+
+Maciej
