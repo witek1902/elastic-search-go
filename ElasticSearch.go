@@ -10,14 +10,12 @@ import (
     "io"
     "os"
     "encoding/json"
-    //"container/list"
 )
 
 
 // Reprezentacja struktury odwróconego indeksu
 // mapowanie string na int
 var index map[string][]int
-
 //tablica struktur doc czyli dokumentow
 var indexed []doc
 
@@ -25,7 +23,7 @@ type SearchFiles struct {
     ID   int
     Filename string
     Folder string
-   	Positions []positions
+	Positions []positions
 }
 
 type positions struct {
@@ -46,10 +44,10 @@ func main() {
 }
 
 type ElasticSearchService struct {
-    gorest.RestService 					`root:"/" consumes:"application/json" produces:"application/json"`
-    getFilesList  gorest.EndPoint 		`method:"GET" path:"/files/" output:"string"`
-    elasticSearch    gorest.EndPoint 	`method:"GET" path:"/search/{word:string}" output:"[]SearchFiles"`
-	uploadFile	gorest.EndPoint 		`method:"GET" path:"/push/" output:"string"`
+    gorest.RestService 				`root:"/" consumes:"application/json" produces:"application/json"`
+    getFilesList gorest.EndPoint 	`method:"GET" path:"/files/" output:"string"`
+    elasticSearch gorest.EndPoint 	`method:"GET" path:"/search/{word:string}" output:"[]SearchFiles"`
+	uploadFile gorest.EndPoint 		`method:"GET" path:"/push/" output:"string"`
 }
 
 func(serv ElasticSearchService) GetFilesList() string{
@@ -63,9 +61,9 @@ func(serv ElasticSearchService) ElasticSearch(word string) []SearchFiles{
 	index = make(map[string][]int)
 	
 	if err := indexDir("docs"); err != nil {
-		testArray[0].ID=100
-		testArray[0].Filename="errorsy jakies"
-		testArray[0].Folder=" "
+		testArray[0].ID=0
+		testArray[0].Filename="Dir not exists."
+		testArray[0].Folder="docs"
 		
 		b, _:= json.Marshal(testArray)
 		n:= []SearchFiles{SearchFiles{}}
@@ -99,7 +97,6 @@ func(serv ElasticSearchService) ElasticSearch(word string) []SearchFiles{
 				testArray2[i].ID=i
 				testArray2[i].Filename=indexed[dl[i]].file
 				testArray2[i].Folder="docs"
-
 			}
 
 			b, _:= json.Marshal(testArray2)
@@ -223,7 +220,6 @@ func indexFile(filename string) bool {
                     }
                 }
                 index[word] = append(dl, x)
-				
             }
         }
     }
