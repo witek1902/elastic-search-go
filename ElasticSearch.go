@@ -17,6 +17,7 @@ import (
 // Reprezentacja struktury odwróconego indeksu
 // mapowanie string na int
 var index map[string][]int
+
 //tablica struktur doc czyli dokumentow
 var indexed []doc
 
