@@ -7,7 +7,7 @@ Install package:
 sudo apt-get install golang golang-go.tools gccgo-go git mercurial
 ```
 
-Add down code in to ~/.bashrc:
+Set variables:
 ```
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
