@@ -17,6 +17,10 @@ Install github package:
 ```
 go get -u github.com/gorrila/mux
 ```
+Run:
+```
+go run *.go
+```
 Open browser and test:
 ```
 localhost:4730/files
