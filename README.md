@@ -22,3 +22,7 @@ Open browser and test:
 localhost:4730/files
 localhost:4730/search/is
 ```
+cURL for upload sample file:
+```
+curl -F file=@SCIEZKA/DO/PLIKU http://localhost:4730/push
+```
