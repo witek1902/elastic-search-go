@@ -3,32 +3,29 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"io/ioutil"
+	"io"
 	"net/http"
 	"github.com/gorilla/mux"
 )
 
 func Files(w http.ResponseWriter, r *http.Request) {
 	
-	if err := initDocumets("docs"); err != false {
-
-		tempFileArray := make([]File,len(Documents))			
+		tempFileArray1 := make([]File,len(Documents))			
 		
 		for i:=0;i<len(Documents);i++ {
-			tempFileArray[i].Id=i
-			tempFileArray[i].Filename=Documents[i].File 
-			tempFileArray[i].Folder="docs"
+			tempFileArray1[i].Id=i
+			tempFileArray1[i].Filename=Documents[i].File 
+			tempFileArray1[i].Folder="docs"
 		}
 
 		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 		w.WriteHeader(http.StatusOK)
 		
-		if err := json.NewEncoder(w).Encode(tempFileArray); err != nil {
+		if err := json.NewEncoder(w).Encode(tempFileArray1); err != nil {
 			panic(err)
 		}
 		return
-	}
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
@@ -102,34 +99,30 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 
 /*
-Test with this curl command:
-
-curl -H "Content-Type: application/json" -d '{"name":"New Todo"}' http://localhost:8080/todos
+curl -F file=@SCIEZKA/DO/PLIKU 
+http://localhost:4730/push
 
 */
 func Upload(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Welcome!\n")
-	var fileUpload fileUpload
-	body,err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
-	if err != nil {
-		panic(err)
-	}
-	if err := r.Body.Close(); err != nil {
-		panic(err)
-	}
-	if err := json.Unmarshal(body, &fileUpload); err != nil {
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-		w.WriteHeader(422) // unprocessable entity
-		if err := json.NewEncoder(w).Encode(err); err != nil {
-			panic(err)
-		}
-	}
-	
-//	t := RepoCreateTodo(todo)
-//	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-//	w.WriteHeader(http.StatusCreated)
-//	if err := json.NewEncoder(w).Encode(t); err != nil {
-//		panic(err)
-//	}
+ 
+	file, header, err := r.FormFile("file")
+    if err != nil {
+		fmt.Println("Can't find file")
+		return 
+    }
+
+	temp, _ := ioutil.TempFile("./docs/", header.Filename+"-")
+    defer temp.Close()
+
+    _, err = io.Copy(temp, file)
+    if err != nil {
+            fmt.Fprintln(w, err)
+    }
+
+    fmt.Fprintf(w, "File uploaded successfully : ")
+    fmt.Fprintf(w, header.Filename)
+	 
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
 }
 
