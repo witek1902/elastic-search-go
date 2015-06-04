@@ -17,3 +17,8 @@ Install github package:
 ```
 go get -u github.com/gorrila/mux
 ```
+Open browser and test:
+```
+localhost:4730/files
+localhost:4730/search/is
+```
