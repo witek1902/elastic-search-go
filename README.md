@@ -28,5 +28,5 @@ localhost:4730/search/is
 ```
 cURL for upload sample file:
 ```
-curl -F file=@SCIEZKA/DO/PLIKU http://localhost:4730/push
+curl -F file=@PATH_TO_FILE http://localhost:4730/push
 ```
